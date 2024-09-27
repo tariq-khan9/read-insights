@@ -579,6 +579,7 @@ export interface PluginUsersPermissionsUser
     userImage: Schema.Attribute.Media<'images'>;
     posts: Schema.Attribute.Relation<'oneToMany', 'api::post.post'>;
     userBio: Schema.Attribute.Text;
+    authorName: Schema.Attribute.String;
     createdAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     publishedAt: Schema.Attribute.DateTime;

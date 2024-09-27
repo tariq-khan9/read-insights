@@ -82,6 +82,9 @@
     "userBio": {
       "type": "text",
       "required": false
+    },
+    "authorName": {
+      "type": "string"
     }
   }
 }

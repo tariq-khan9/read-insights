@@ -6,7 +6,7 @@ const Authors = () => {
 
     useEffect(() => {
         // Fetch users with selected fields and populated userImage
-        fetch('http://localhost:1337/api/users?populate=userImage&fields=id,username,email,userBio,createdAt')
+        fetch('http://localhost:8000/api/users?populate=userImage&fields=id,username,email,userBio,createdAt')
             .then(response => response.json())
             .then(data => {
                 setUsers(data); // Save the fetched data to the state
@@ -24,7 +24,7 @@ const Authors = () => {
                     {/* Check if userImage exists and display the image */}
                     {user.userImage && user.userImage.url ? (
                         <img 
-                            src={`http://localhost:1337${user.userImage.url}`} 
+                            src={`http://localhost:8000${user.userImage.url}`} 
                             alt={user.userImage.name || 'User image'} 
                             style={{ width: '100px', height: '100px' }}
                         />

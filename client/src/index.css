@@ -1,3 +1,23 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.form-input{
+    @apply border text-[15px] w-full min-w-[350px] border-slate-500 p-2 text-gray-500 outline-blue-800 rounded-md
+}
+
+.form-error{
+    @apply text-[12px] text-red-600 min-h-[28px] pl-1 mt-[2px]
+}
+
+.form-success{
+    @apply text-[15px] text-green-800 min-h-[28px] pl-1 mt-[2px]
+}
+
+.form-heading{
+    @apply text-[25px] font-semibold text-fuchsia-800 w-full text-center
+}
+
+.form-btn{
+    @apply border border-fuchsia-800 p-2 px-10 rounded-full text-fuchsia-800 hover:bg-fuchsia-800 hover:text-white
+}
