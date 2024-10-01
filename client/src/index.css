@@ -3,11 +3,15 @@
 @tailwind utilities;
 
 .form-input{
-    @apply border text-[15px] w-full min-w-[350px] border-slate-500 p-2 text-gray-500 outline-blue-800 rounded-md
+    @apply border text-[16px] w-full min-w-[350px] border-slate-500 p-2 text-gray-500 outline-blue-800 rounded-md
 }
 
 .form-error{
     @apply text-[12px] text-red-600 min-h-[28px] pl-1 mt-[2px]
+}
+
+.form-error2{
+    @apply text-[15px] text-gray-200  min-h-[28px] pl-1 mt-[2px]
 }
 
 .form-success{
@@ -20,4 +24,12 @@
 
 .form-btn{
     @apply border border-fuchsia-800 p-2 px-10 rounded-full text-fuchsia-800 hover:bg-fuchsia-800 hover:text-white
+}
+
+.form-label{
+    @apply text-[18px] text-slate-100  mb-[2px]
+}
+
+.form-label2{
+    @apply text-[20px] text-white font-thin  mb-[2px]
 }

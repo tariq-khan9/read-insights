@@ -15,9 +15,6 @@ export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
     categoryName: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.Unique;
-    categorySlug: Schema.Attribute.String &
-      Schema.Attribute.Required &
-      Schema.Attribute.Unique;
     categoryDescription: Schema.Attribute.Text;
     posts: Schema.Attribute.Relation<'manyToMany', 'api::post.post'>;
     createdAt: Schema.Attribute.DateTime;
@@ -74,17 +71,14 @@ export interface ApiPostPost extends Struct.CollectionTypeSchema {
     singularName: 'post';
     pluralName: 'posts';
     displayName: 'Post';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
     postTitle: Schema.Attribute.String & Schema.Attribute.Required;
-    postSlug: Schema.Attribute.String &
-      Schema.Attribute.Required &
-      Schema.Attribute.Unique;
     postExcerpt: Schema.Attribute.Text & Schema.Attribute.Required;
-    postContent: Schema.Attribute.Blocks & Schema.Attribute.Required;
     featuredImage: Schema.Attribute.Media<'images'>;
     categories: Schema.Attribute.Relation<
       'manyToMany',
@@ -95,6 +89,8 @@ export interface ApiPostPost extends Struct.CollectionTypeSchema {
       'manyToOne',
       'plugin::users-permissions.user'
     >;
+    post: Schema.Attribute.Text;
+    postContent: Schema.Attribute.Text & Schema.Attribute.Required;
     createdAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     publishedAt: Schema.Attribute.DateTime;

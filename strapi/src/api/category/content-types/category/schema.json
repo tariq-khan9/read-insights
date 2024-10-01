@@ -17,11 +17,6 @@
       "required": true,
       "unique": true
     },
-    "categorySlug": {
-      "type": "string",
-      "unique": true,
-      "required": true
-    },
     "categoryDescription": {
       "type": "text"
     },

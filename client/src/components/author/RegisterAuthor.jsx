@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import FileUploadBox from './../others/FileUploadBox';
+import FileUploadComponent from '../others/FileUploadComponent';
 
 const RegisterAuthor = () => {
   const { register, handleSubmit, formState: { errors }, watch, reset } = useForm();
@@ -190,7 +190,11 @@ const RegisterAuthor = () => {
 
               {/* Author Image */}
               <div className='flex flex-col'>
-                <FileUploadBox setAuthorImage={setAuthorImage} resetImage={resetImage} />
+                <FileUploadComponent  
+                  setAuthorImage={setAuthorImage} 
+                  resetImage={resetImage}
+                  placeText='Upload Image'
+                 />
                 <div className='form-error w-full flex justify-center'>
                   {/* Display image error */}
                   {imageError && <p className='ml-4'>{imageError}</p>}
