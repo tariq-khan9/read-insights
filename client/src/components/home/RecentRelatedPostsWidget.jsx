@@ -51,7 +51,7 @@ const RecentRelatedPostsWidget = ({categories, excludedPostId}) => {
                 <h1 className='text-[9px] font-barlow'>{moment(post.createdAt).format('MMM DD, YYYY')}</h1>
               </div>
               <div className='flex flex-col w-[70%]'>
-                   <Link className='font-roboto uppercase text-black hover:tracking-[0.3px] transition-all duration-500 hover:text-sky-500 hover:font-semibold text-[11px] ' href={`/post/${post.documentId}`}>{post.postTitle}</Link>
+                   <Link className='font-roboto uppercase text-black hover:tracking-[0.3px] transition-all duration-500 hover:text-sky-500 hover:font-semibold text-[11px] ' to={`/post/${post.documentId}`}>{post.postTitle}</Link>
                    <h1 className=' font-montserrat text-justify text-[9px]'> {post.postExcerpt.length > 90 
                       ? `${post.postExcerpt.substring(0, 70)}...` 
                       : post.postExcerpt}</h1>

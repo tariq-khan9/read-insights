@@ -1,14 +1,38 @@
 import { useQuery } from '@apollo/client';
 import React, { useState } from 'react';
+import { useParams, useLocation } from 'react-router-dom';
 import PostCard from './PostCard';
-import { GET_POSTS } from '../../services/graphql/queryMutations';
+import { GET_POSTS, GET_ALL_POSTS_BY_CATEGORY, GET_ALL_POSTS_BY_AUTHOR } from '../../services/graphql/queryMutations';
 import CategoryWidget from './CategoryWidget';
 import RecentRelatedPostsWidget from './RecentRelatedPostsWidget';
 import AuthorWidget from './AuthorWidget';
 
+
 const Index = () => {
-  const { data, loading, error } = useQuery(GET_POSTS);
-  const [posts] = useState([]);
+ 
+  const param = useParams();
+  const location = useLocation()
+
+  const {id} = param;
+
+  let queryToExecute;
+  let variables = {};
+
+  if (location.pathname.includes('/category/')) {
+    queryToExecute = GET_ALL_POSTS_BY_CATEGORY;
+    variables = { categoryId: id };
+  } else if (location.pathname.includes('/author/')) {
+    queryToExecute = GET_ALL_POSTS_BY_AUTHOR;
+    variables = { authorId: id };
+  } else {
+    queryToExecute = GET_POSTS;
+  }
+
+  const { data, loading, error } = useQuery(queryToExecute, {variables});
+ 
+  if(id) console.log("posts with params ", data)
+
+  console.log("cateogyr id is here", data)
 
   if (loading)
     return (
@@ -52,7 +76,7 @@ const Index = () => {
       {/* Main Content */}
       <div className='mx-auto max-w-[45%] space-y-16 flex flex-col items-center justify-center'>
         {data?.posts?.length ? (
-          data.posts.map((data) => <PostCard key={data.id} post={data} />)
+          data?.posts?.map((data) => <PostCard key={data.id} post={data} />)
         ) : (
           <div className='flex w-full justify-center'>
             <h1 className='mt-[200px] font-barlow font-extralight text-[30px] text-sky-300'>

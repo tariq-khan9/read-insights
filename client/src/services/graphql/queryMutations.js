@@ -102,9 +102,77 @@ export const GET_CATEGORIES_POSTS = gql`
 }
 `
 
-// export const GET_ALL_POSTS_BY_CATEGORY = gql`
+export const GET_ALL_POSTS_BY_CATEGORY = gql`
+   query getAllPostsByCategory($categoryId: ID!){
+    posts(filters: { 
+      categories: { documentId: { eq: $categoryId } } 
+    }) {
+      documentId
+    postTitle
+    postExcerpt
+    postContent
+    createdAt
+    categories{
+      documentId
+      categoryName
+    }
+    user {
+      documentId
+      authorName
+      userBio
+      userImage {
+        url
+      }
+
+    }
+    categories {
+      documentId
+      categoryName
+    }
+    featuredImage {
+      url
+    }
+
   
-// `
+    }
+  }
+`
+
+export const GET_ALL_POSTS_BY_AUTHOR = gql`
+   query getAllPostsByCategory($authorId: ID!){
+    posts(filters: { 
+      user: { documentId: { eq: $authorId } } 
+    }) {
+      documentId
+    postTitle
+    postExcerpt
+    postContent
+    createdAt
+    categories{
+      documentId
+      categoryName
+    }
+    user {
+      documentId
+      authorName
+      userBio
+      userImage {
+        url
+      }
+
+    }
+    categories {
+      documentId
+      categoryName
+    }
+    featuredImage {
+      url
+    }
+
+  
+    }
+  }
+`
 
 export const GET_RECENT_POSTS = gql`
 query recentPosts {

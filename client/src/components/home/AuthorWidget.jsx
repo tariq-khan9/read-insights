@@ -1,11 +1,13 @@
 
 import React, {useState, useEffect} from 'react'
 import {Link} from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import axios from 'axios'
 
 
 const AuthorWidget = () => {
-  
+  const param = useParams();
+  const {id} = param;
   const [authors, setAuthors]= useState([]);
 
   
@@ -34,7 +36,7 @@ const AuthorWidget = () => {
                 <li key={author.id} className="mb-2 text-[20px] text-sky-700"> {/* Each item is now a proper <li> */}
                   <div className="flex flex-row border-b border-sky-600 py-1 w-[70%]">
                            <img src={`${process.env.REACT_APP_STRAPI_URL}${author.userImage.url}`} className='w-9 h-9 rounded-full' alt='author'/>
-                            <Link href={`/author/${author.documentId}`} className={` mt-2 ml-2 text-[14px]  hover:tracking-[1px] transition-all duration-500  font-montserrat text-gray-700 hover:text-sky-500 hover:font-semibold font-normal}`}>
+                            <Link to={`/author/${author.documentId}`} className={`${id==author.documentId? 'font-bold':''} mt-2 ml-2 text-[14px]  hover:tracking-[1px] transition-all duration-500  font-montserrat text-gray-700 hover:text-sky-500 hover:font-semibold font-normal}`}>
                             {author.authorName}
                             </Link>
                   </div>

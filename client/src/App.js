@@ -15,13 +15,15 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="" element={<Index/>} />
+        <Route path="/" element={<Index/>} />
         <Route path="/register" element={<RegisterAuthor/>} />
         <Route path="/author" element={<Authors/>} />
         <Route path="/login" element={<LoginAuthor/>} />
 
         <Route path="post/create" element={<CreatePost/>} />
         <Route path="/post/:id" element={<IndexPost/>} />
+        <Route path="/category/:id" element={<Index/>} />
+        <Route path="/author/:id" element={<Index/>} />
       </Routes>
     </BrowserRouter>
   );
