@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { useForm } from 'react-hook-form';
-
+import { useForm } from 'react-hook-form'
+import {useAuth} from './../../services/AuthContext'
 
 const LoginAuthor = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
   const [loginMessage, setLoginMessage] = useState('');
-  
-  // State to store JWT token (optional, can be managed in context/state management)
-  const [jwt, setJwt] = useState('');
+  const { handleLogin } = useAuth(); // Get handleLogin from the context
+
 
   const onSubmit = async (data) => {
 
@@ -26,12 +25,10 @@ const LoginAuthor = () => {
       const loginData = await loginRes.json();
 
       if (loginRes.ok) {
-        // Successful login, store JWT token or redirect user
-        setJwt(loginData.jwt);
+        handleLogin(loginData);
         setLoginMessage('Author logged successfully!');
         console.log('Login Data:', loginData);
       } else {
-        // Display login error from Strapi
         setLoginMessage('Author Email or Password incorrect!');
       }
     } catch (err) {
@@ -52,7 +49,7 @@ const LoginAuthor = () => {
 
 
   return (
-    <div className='min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-500 to-fuchsia-500'>
+    <div className='min-h-screen flex items-center justify-center top-12'>
       <form className='shadow-2xl shadow-slate-900 flex flex-col bg-white rounded-lg p-2' onSubmit={handleSubmit(onSubmit)}>
         <div className='border flex flex-row border-blue-800 w-full  rounded-lg'>
           <div className='px-6 pr-8'>
@@ -100,7 +97,7 @@ const LoginAuthor = () => {
               </div>
 
 
-              <button className='form-btn mt-8' type="submit">Register Author</button>
+              <button className='form-btn mt-8' type="submit">Login</button>
 
                    {/* Message Display */}
                 <div className='flex w-full justify-center min-h-8 mt-6'>
@@ -120,7 +117,7 @@ const LoginAuthor = () => {
           
 
           <div className='rounded-lg'>
-              <img src='/images/author.jpg' alt='image' className='h-[400px] w-[400px] rounded-r-lg'/>
+              <img src='/images/author.jpg' alt='image' className='h-[350px] w-[350px] rounded-r-lg'/>
          </div>
 
       

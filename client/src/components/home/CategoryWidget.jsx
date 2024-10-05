@@ -23,7 +23,7 @@ const CategoryWidget = () => {
 
   return (
     
-    <div className='bg-white text-black p-2  rounded-md w-full pb-4 shadow-sky-700 shadow-inner'>
+    <div className='bg-white text-black p-2 mt-12 rounded-md w-full pb-4 shadow-sky-700 shadow-inner'>
       <div className='flex w-full justify-center'>
       <h1 className='flex text-center font-barlow text-[20px] font-meduim text-sky-700 tracking-[1px]'>Categories</h1>
       </div>

@@ -39,7 +39,7 @@ export default function RichEditor({ content, setContent, editable }) {
 
   return (
     <div className="flex  mt-1 w-full rounded-lg">
-      <div className="w-full min-h-40 h-full rounded-lg">
+      <div className="w-full min-h-32 h-full rounded-lg">
         <ReactQuill
           placeholder="Post Content"
           theme="snow"

@@ -23,11 +23,11 @@ const AuthorPostsWidget = ({authorId, excludePostId}) => {
 
   return (
     
-    <div className='bg-slate-100 p-2 pb-4 space-y-4 rounded-md w-full pr-6 shadow-sky-700 shadow-inner'>
+    <div className='bg-slate-100 mt-12 p-2 pb-4 space-y-4 rounded-md w-full pr-6 shadow-sky-700 shadow-inner'>
     <div className='flex justify-center items-center w-full my-1 mb-4'>
     <h1 className='flex text-center text-sky-700 tracking-[1px] font-barlow text-[20px]'> Author's Posts</h1>
     </div>
-  
+    <div className='w-full max-h-[440px] overflow-y-auto'>
     {
       data.posts?.map((post)=>(
         <div className='flex flex-row space-x-2'>
@@ -48,6 +48,8 @@ const AuthorPostsWidget = ({authorId, excludePostId}) => {
 
         ))
       }
+    </div>
+  
 
 
     

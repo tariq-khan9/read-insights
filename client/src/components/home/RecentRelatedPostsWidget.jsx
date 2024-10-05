@@ -35,7 +35,7 @@ const RecentRelatedPostsWidget = ({categories, excludedPostId}) => {
 
   return (
     
-    <div className='bg-slate-100 p-2 pb-4 space-y-4 rounded-md w-full pr-6 shadow-sky-700 shadow-inner'>
+    <div className='bg-slate-100 mt-12 p-2 pb-4 space-y-4 rounded-md w-full pr-6 shadow-sky-700 shadow-inner'>
 
     
       <div className='flex justify-center items-center w-full my-1 mb-4'>

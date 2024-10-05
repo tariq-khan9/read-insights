@@ -10,37 +10,32 @@ export const GET_CATEGORIES = gql`
 `
 
 export const GET_POSTS = gql`
-query getPosts {
-  posts {
-    documentId
-    postTitle
-    postExcerpt
-    postContent
-    createdAt
-    categories{
+  query getPosts($limit: Int) {
+    posts(pagination: { limit: $limit }, sort: "createdAt:desc") {
       documentId
-      categoryName
-    }
-    user {
-      documentId
-      authorName
-      userBio
-      userImage {
+      postTitle
+      postExcerpt
+      postContent
+      createdAt
+      categories {
+        documentId
+        categoryName
+      }
+      user {
+        documentId
+        authorName
+        userBio
+        userImage {
+          url
+        }
+      }
+      featuredImage {
         url
       }
-
     }
-    categories {
-      documentId
-      categoryName
-    }
-    featuredImage {
-      url
-    }
-
   }
-}
 `;
+
 
 export const GET_POST = gql`
   query Post($documentId: ID!) {
@@ -142,7 +137,7 @@ export const GET_ALL_POSTS_BY_AUTHOR = gql`
    query getAllPostsByCategory($authorId: ID!){
     posts(filters: { 
       user: { documentId: { eq: $authorId } } 
-    }) {
+    }, sort: "createdAt:desc") {
       documentId
     postTitle
     postExcerpt
@@ -222,6 +217,44 @@ export const CREATE_POST = gql`
       }
     }
   }
+`;
+
+export const DELETE_POST = gql`
+  mutation DeletePost($documentId: ID!) {
+  deletePost(documentId: $documentId) {
+    documentId
+  }
+}
+`
+
+export const CREATE_COMMENT = gql`
+  mutation CreateComment($data: CommentInput!) {
+  createComment(data: $data) {
+    comment
+    name
+    email
+    createdAt
+  }
+}
+`
+
+export const GET_COMMENTS = gql`
+ query Comments($postId: ID!) {
+  comments(filters: { 
+       post: { documentId: { eq: $postId } } 
+    }
+    sort: "createdAt:desc" ) {
+    documentId
+    name
+    email
+    comment
+    post {
+      documentId
+    }
+    createdAt
+   
+  }
+}
 `;
 
 

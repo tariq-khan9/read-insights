@@ -13,7 +13,7 @@ const PostCard = ({post}) => {
 
 
   return (
-    <div className='border bg-slate-100 rounded-md border-gray-500 w-full p-4  flex flex-col items-center '>
+    <div className='border bg-slate-100 mt-1 rounded-md border-gray-500 w-full p-4  flex flex-col items-center '>
     
     <img src={`${process.env.REACT_APP_STRAPI_URL}${post.featuredImage.url}`} alt='image' className='h-[400px] w-full rounded-md'/>
 

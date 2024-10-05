@@ -31,7 +31,7 @@ const AuthorWidget = () => {
       <div className='flex w-full justify-center'>
       <h1 className='flex text-center font-barlow text-[20px] font-meduim text-sky-700 tracking-[1px] mb-2'>Posts by Author</h1>
       </div>
-          <ul className=" pl-8 items-center">
+          <ul className=" pl-8 items-center max-h-[240px] overflow-y-auto">
               {authors.map((author) => (
                 <li key={author.id} className="mb-2 text-[20px] text-sky-700"> {/* Each item is now a proper <li> */}
                   <div className="flex flex-row border-b border-sky-600 py-1 w-[70%]">

@@ -5,30 +5,35 @@ import Select from "react-select";
 const customStyles = {
   control: (provided) => ({
     ...provided,
-    height: "40px",
-    minHeight: "40px",
+    height: "30px",
+    minHeight: "30px",
     borderRadius: 5,
     marginLeft: "0px",
+    fontSize: "12px", // Reduce text size in the control
   }),
   valueContainer: (provided) => ({
     ...provided,
-    height: "40px",
+    height: "30px",
     padding: "0 6px",
+    fontSize: "12px", // Reduce text size in value container
   }),
   singleValue: (provided) => ({
     ...provided,
     display: "flex",
     alignItems: "center",
-    height: "40px",
+    height: "20px",
+    fontSize: "12px", // Reduce text size for single values
   }),
   indicatorsContainer: (provided) => ({
     ...provided,
-    height: "40px",
+    height: "30px",
+    fontSize: "10px"
   }),
   option: (provided, state) => ({
     ...provided,
     backgroundColor: state.isFocused ? "#ece9fd" : provided.backgroundColor,
     color: state.isFocused ? "black" : provided.color,
+    fontSize: "12px", // Reduce text size for dropdown options
   }),
 };
 
@@ -45,7 +50,7 @@ const MultiSelect = ({
   useEffect(() => {
     if (data && data.length > 0) {
       setSelected(data);
-      setCategories(data)
+      setCategories(data);
     }
   }, [data]);
 

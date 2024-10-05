@@ -1,19 +1,27 @@
 
 import React, { useState, useEffect, useRef } from 'react';
-import pako from 'pako'
 import { useForm } from 'react-hook-form';
 import { useQuery, useMutation } from '@apollo/client';
-import RichEditor from '../../others/RichEditor';
-import FileUploadComponent from '../../others/FileUploadComponent';
-import MultiSelect from '../../others/MultiSelect';
-import { GET_CATEGORIES, CREATE_POST } from '../../../services/graphql/queryMutations';
-import { fileUploadToStrapi } from '../../../services/lib/fileUploadToStrapi';
+import RichEditor from '../others/RichEditor';
+import FileUploadComponent from './../others/FileUploadComponent';
+import MultiSelect from './../others/MultiSelect';
+import { GET_CATEGORIES, CREATE_POST, GET_ALL_POSTS_BY_AUTHOR, GET_POSTS } from '../../services/graphql/queryMutations';
+import { fileUploadToStrapi } from '../../services/lib/fileUploadToStrapi';
+import { useAuth } from '../../services/AuthContext';
 
 
 const CreatePost= () => {
 
+  const {auth} = useAuth();
+  const authorId = auth.user.documentId;
+
   const {data, loading} = useQuery(GET_CATEGORIES)
-  const [createPost] = useMutation(CREATE_POST);
+  const [createPost] = useMutation(CREATE_POST, {
+    refetchQueries: [
+      { query: GET_ALL_POSTS_BY_AUTHOR, variables: { authorId } }, // Automatically refetch this query
+      { query: GET_POSTS }, // Refetch all posts after mutation
+    ],
+  });
 
   
   
@@ -82,7 +90,7 @@ const handleSelectChange = (selected) => {
       postContent: content,
       categories: categories.map((cat) => cat.value),
       featuredImage: uploadedImageId,
-      user: '38', // Set the user ID as needed
+      user: authorId, // Set the user ID as needed
     };
 
     try {
@@ -142,21 +150,21 @@ const handleSelectChange = (selected) => {
   if(loading) return <h1>loading...</h1>
   
   return (
-    <div className='flex w-full min-h-screen  justify-center  bg-gradient-to-r from-blue-500 to-fuchsia-500'>
-        <div className="flex flex-col w-[60%] mt-5 items-center  ">
-          <form className='w-full border border-gray-200 px-6 py-4 rounded-lg' onSubmit={handleSubmit(onSubmit)}>
-          <h2 className="text-[30px] w-full font-semibold text-center text-slate-100 mb-6">Write Post</h2>
+    <div className='flex w-full  justify-center  '>
+        <div className="flex flex-col w-[70%] mt-5 items-center  ">
+          <form className='w-full border border-gray-200 px-6 pt-2 rounded-lg' onSubmit={handleSubmit(onSubmit)}>
+          <h2 className="text-[20px] w-full font-semibold text-center text-slate-100 mb-4">Write Post</h2>
             <div className='first-row flex flex-row w-full justify-between'>
 
-                 <div className='first-col w-[70%] '>
+                 <div className='first-col w-[60%] '>
                       <div className='w-full flex flex-col'>
                           <input
-                              className="form-input w-[450px]"
-                              placeholder='Post Title'
+                              className="form-input w-[400px]"
+                              placeholder='  Post Title'
                               type="text"
                               {...register('title', { required: 'title is required' })}
                           />
-                          <div className='min-h-8'>
+                          <div className='min-h-6'>
                           {errors.title && <span className='form-error2'>{errors.title.message}</span>}
                           </div>
                       </div>
@@ -164,11 +172,11 @@ const handleSelectChange = (selected) => {
                       <div  className='w-full flex flex-col'>
                       <textarea
                           className="form-input w-[500px]"
-                          placeholder='Post Excerpt'
+                          placeholder='  Post Excerpt'
                           rows={3}
                           {...register('excerpt', { required: 'Excerpt is required' })}
                       />
-                      <div className='min-h-8'>
+                      <div className='min-h-6'>
                       {errors.excerpt && <span className='form-error2'>{errors.excerpt.message}</span>}
                       </div>
                       </div>
@@ -183,7 +191,7 @@ const handleSelectChange = (selected) => {
                             />
                           </div>
 
-                          <div className='min-h-8'>
+                          <div className='min-h-6'>
                             {errorCategory && <span className='form-error2'>Please select a category</span>}
                           </div>    
                       </div>
@@ -205,8 +213,8 @@ const handleSelectChange = (selected) => {
 
             </div>
             
-            <div className='flex flex-col'>
-                  <RichEditor content={content} setContent={setContent}/>
+            <div className='flex flex-col bg-white rounded-lg'>
+                  <RichEditor editable={true} content={content} setContent={setContent}/>
                   <div className='min-h-8'>
                     {errorContent && <p className='ml-4 form-error2'>{errorContent}</p>}
                   </div>
@@ -216,11 +224,11 @@ const handleSelectChange = (selected) => {
 
        
 
-            <button className="border-2 border-white text-white px-12 p-2 mt-2 rounded-full" type="submit">Create Post</button>
+            <button className="border-2 text-[12px] border-white text-white px-10 p-1 mt-2 rounded-full" type="submit">Create Post</button>
 
-            <div className='flex w-full justify-center min-h-8'>
+            <div className='flex w-full justify-center min-h-6'>
               {successMessage && (
-              <p className={`text-[15px] text-gray-200`}>
+              <p className={`text-[13px] text-gray-200`}>
                 {successMessage}
               </p>
               )}

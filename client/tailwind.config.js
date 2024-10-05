@@ -10,6 +10,10 @@ module.exports = {
         barlow: ['Barlow', 'sans-serif'], 
         montserrat: ['Montserrat', 'sans-serif'], 
       },
+      screens: {
+        '3xl': '2400px',
+        // => @media (min-width: 992px) { ... }
+      },
     },
   },
   plugins: [],

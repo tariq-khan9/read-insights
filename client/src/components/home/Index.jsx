@@ -25,15 +25,19 @@ const Index = () => {
     queryToExecute = GET_ALL_POSTS_BY_AUTHOR;
     variables = { authorId: id };
   } else {
-    queryToExecute = GET_POSTS;
+     {
+      queryToExecute = GET_POSTS;
+      variables= { limit: 1000 };
+    
+    }
   }
 
-  const { data, loading, error } = useQuery(queryToExecute, {variables});
- 
-  if(id) console.log("posts with params ", data)
+  const { data, loading, error } = useQuery(queryToExecute, {variables,
+    fetchPolicy: "network-only",
+    
+  });
 
-  console.log("cateogyr id is here", data)
-
+  console.log("posts in home" , data)
   if (loading)
     return (
       <div className='flex h-screen bg-transparent tracking-[3px] justify-center pt-60 font-barlow text-sky-400 text-[40px]'>
@@ -63,10 +67,10 @@ const Index = () => {
     );
 
   return (
-    <div className=' flex relative flex-row justify-between mt-8 w-full'>
+    <div className=' max-width flex relative flex-row justify-between mt-8 w-full'>
   
       {/* Left Sidebar */}
-      <div className='w-[22%] fixed left-8'>
+      <div className='w-[22%] fixed left-8 3xl:left-[10%]'>
         <div className='flex flex-col space-y-8 '>
           <CategoryWidget />
           <AuthorWidget />
@@ -74,20 +78,20 @@ const Index = () => {
       </div>
 
       {/* Main Content */}
-      <div className='mx-auto max-w-[45%] space-y-16 flex flex-col items-center justify-center'>
+      <div className='mx-auto mt-12 max-w-[45%] space-y-16 flex flex-col items-center justify-center'>
         {data?.posts?.length ? (
           data?.posts?.map((data) => <PostCard key={data.id} post={data} />)
         ) : (
           <div className='flex w-full justify-center'>
             <h1 className='mt-[200px] font-barlow font-extralight text-[30px] text-sky-300'>
-              No post exists on this Subject!
+              No post exists!
             </h1>
           </div>
         )}
       </div>
 
       {/* Right Sidebar */}
-      <div className='w-[22%] fixed right-8 '>
+      <div className='w-[22%] fixed right-8 3xl:right-[10%]'>
         <div className='flex flex-col'>
           <RecentRelatedPostsWidget />
         </div>

@@ -13,7 +13,7 @@ const PostDetails = ({post}) => {
  
 
   if (!post || Object.keys(post).length === 0) {
-    return <h1>Nothing to display</h1>;
+    return <h1 className='text-[20px]   text-fuchsia-300 font-barlow w-full text-center mt-20'>No post to display!</h1>;
   }
   
     const profileImage = post.author?.authorImage?.url ? post.author.authorImage.url : '/images/logoDefault.jpg';
@@ -24,7 +24,7 @@ const PostDetails = ({post}) => {
   return (
     
    
-    <div className='rounded-t-xl w-full flex flex-col items-center mt-[55px]'>
+    <div className='rounded-t-xl w-full flex flex-col items-center mt-[50px]'>
       <div className='w-full bg-slate-100 rounded-xl'>
          <img src={`${process.env.REACT_APP_STRAPI_URL}${post.featuredImage.url}`} alt='image' className='w-full  h-full bg-center rounded-t-xl'/>
           <div className='w-full px-4'>

@@ -30,7 +30,7 @@ const FileUploadComponent = ({setAuthorImage, resetImage, placeText}) => {
         onChange={handleFileChange}
       />   
       <div
-        className={`w-52 h-[200px] bg-white flex justify-center items-center cursor-pointer relative border border-fuchsia-700 hover:border-2 transition rounded-md`}
+        className={`w-52 h-[180px] bg-white flex justify-center items-center cursor-pointer relative border border-fuchsia-700 hover:border-2 transition rounded-md`}
         onClick={() => document.getElementById("fileInput").click()}
       >
         {/* Display uploaded image or placeholder text */}
@@ -41,7 +41,7 @@ const FileUploadComponent = ({setAuthorImage, resetImage, placeText}) => {
             className="w-full h-full object-cover"
           />
         ) : (
-          <span className="text-fuchsia-800">{placeText}</span>
+          <span className="text-fuchsia-800 text-[13px]">{placeText}</span>
         )}
       </div>
       

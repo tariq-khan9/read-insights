@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import FileUploadComponent from '../others/FileUploadComponent';
+import { useAuth } from '../../services/AuthContext';
 
 const RegisterAuthor = () => {
+  const {auth} = useAuth();
   const { register, handleSubmit, formState: { errors }, watch, reset } = useForm();
   const [authorImage, setAuthorImage] = useState(null);
   const [imageError, setImageError] = useState('');
@@ -97,11 +99,11 @@ const RegisterAuthor = () => {
   }, [authorCreatedMessage]);
 
   return (
-    <div className='min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-500 to-fuchsia-500'>
-      <form className='shadow-2xl shadow-slate-900 flex flex-col bg-white rounded-lg p-2' onSubmit={handleSubmit(onSubmit)}>
+    <div className='bg-transparent flex items-center justify-center'>
+      <form className='shadow-2xl shadow-slate-900 mt-6 flex flex-col bg-white rounded-lg p-2' onSubmit={handleSubmit(onSubmit)}>
         <div className='border border-blue-800 w-full px-10 pb-2 rounded-lg'>
-          <h1 className='form-heading mt-4 mb-8'>Register as Author!</h1>
-          <div className='form space-x-8 flex flex-row'>
+          <h1 className='form-heading mt-3 mb-5'>Register as Author!</h1>
+          <div className='form space-x-6 flex flex-row'>
             <div className='flex flex-col w-full'>
               {/* Author Name */}
               <div className='w-full'>
@@ -171,7 +173,7 @@ const RegisterAuthor = () => {
                 </div>
               </div>
 
-              <button className='form-btn mt-8' type="submit">Register Author</button>
+              <button className='form-btn mt-7' type="submit">Register Author</button>
             </div>
 
             <div className='flex flex-col w-full'>
@@ -204,7 +206,7 @@ const RegisterAuthor = () => {
           </div>
 
           {/* Message Display */}
-          <div className='flex w-full justify-center min-h-8'>
+          <div className='flex w-full justify-center min-h-6'>
             {authorCreatedMessage && (
               <p className={`form-${authorCreatedMessage.includes('successfully') ? 'success' : 'error'}`}>
                 {authorCreatedMessage}
