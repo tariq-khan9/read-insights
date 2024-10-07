@@ -7,11 +7,6 @@ import { CgCalendarDates } from "react-icons/cg";
 
 const PostCard = ({post}) => {
 
- console.log(post.featuredImage.url)
-
-  const profileImage = post?.user.userImage.url;
-
-
   return (
     <div className='border bg-slate-100 mt-1 rounded-md border-gray-500 w-full p-4  flex flex-col items-center '>
     

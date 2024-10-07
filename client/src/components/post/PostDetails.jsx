@@ -1,17 +1,10 @@
 import React from 'react'
 import moment from 'moment';
 import { useParams } from 'react-router-dom';
-import { CgCalendarDates } from "react-icons/cg";
 
-import {Link }from 'react-router-dom';
 import RichEditor from '../others/RichEditor';
 
 const PostDetails = ({post}) => {
-
-
-
- 
-
   if (!post || Object.keys(post).length === 0) {
     return <h1 className='text-[20px]   text-fuchsia-300 font-barlow w-full text-center mt-20'>No post to display!</h1>;
   }

@@ -54,7 +54,7 @@ const IndexPost = () => {
 
 
   return (
-    <div className='px-10  flex flex-row justify-between relative'>
+    <div className='px-10 pb-20 flex flex-row justify-between relative'>
       <div className='w-[22%] relative'>
         <div className='flex flex-col sticky top-8 overflow-y-auto'>
         {data.post?.user && (

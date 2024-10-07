@@ -15,7 +15,7 @@ const RecentRelatedPostsWidget = ({categories, excludedPostId}) => {
   // Choose the query based on whether categories are present
   const query = categories ? GET_CATEGORIES_POSTS : GET_RECENT_POSTS;
 
-  // Set variables for the query; use directly without nesting
+
   const variables = categories ? { categoryNames: categoryProp, excludeId: excludedPostId  } : {};
 
   const { data, loading, error } = useQuery(query, { variables });
@@ -58,14 +58,8 @@ const RecentRelatedPostsWidget = ({categories, excludedPostId}) => {
               </div>
 
               </div>
-        
-      
-
           ))
-        }
-
-  
-      
+        }  
     </div>
   )
 }

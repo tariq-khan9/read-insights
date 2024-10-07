@@ -1,9 +1,5 @@
 import React from 'react';
 import { BiLike, BiDislike } from "react-icons/bi";
-import { useQuery } from '@apollo/client';
-import gql from 'graphql-tag';
-
-// Define the updated GraphQL query with proper sorting
 
 
 const Comments = ({comment}) => {

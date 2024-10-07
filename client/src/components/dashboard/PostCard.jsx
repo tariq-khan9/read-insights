@@ -64,7 +64,7 @@ const PostCard = ({ post }) => {
     return <h1 className='text-[20px] text-fuchsia-300 font-barlow w-full text-center mt-20'>No post to display!</h1>;
   }
 
-  const profileImage = post.author?.authorImage?.url ? post.author.authorImage.url : '/images/logoDefault.jpg';
+ 
 
   return (
     <div className='rounded-t-xl w-full flex flex-col items-center mt-[50px]'>

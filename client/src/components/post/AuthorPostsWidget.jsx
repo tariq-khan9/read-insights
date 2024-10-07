@@ -14,10 +14,6 @@ const AuthorPostsWidget = ({authorId, excludePostId}) => {
   });
 
 
-
-  const [posts, setPosts]= useState([]);
-
-  //deconstructing authorid which is string from authorSlug object
  
  if(loading) return <h1>loading...</h1>
 

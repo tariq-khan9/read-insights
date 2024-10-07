@@ -45,8 +45,8 @@ export default function RichEditor({ content, setContent, editable }) {
           theme="snow"
           value={content}
           onChange={setContent}
-          readOnly={!editable} // Toggle read-only based on the editable state
-          modules={modules} // Conditionally pass modules to hide/show toolbar
+          readOnly={!editable} 
+          modules={modules}
           formats={formats}
         />
       </div>

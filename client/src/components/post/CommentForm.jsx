@@ -44,8 +44,6 @@ const CommentForm = ({ post, handleNewComment, showComments, setShowComments, co
       }, 3000);
 
      
-
-      // Clear the input fields after successful submission
       commentRef.current.value = '';
       nameRef.current.value = '';
       emailRef.current.value = '';

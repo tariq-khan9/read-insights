@@ -34,10 +34,8 @@ const Index = () => {
 
   const { data, loading, error } = useQuery(queryToExecute, {variables,
     fetchPolicy: "network-only",
-    
   });
 
-  console.log("posts in home" , data)
   if (loading)
     return (
       <div className='flex h-screen bg-transparent tracking-[3px] justify-center pt-60 font-barlow text-sky-400 text-[40px]'>
@@ -67,7 +65,7 @@ const Index = () => {
     );
 
   return (
-    <div className=' max-width flex relative flex-row justify-between mt-8 w-full'>
+    <div className=' max-width pb-20 flex relative flex-row justify-between mt-8 w-full'>
   
       {/* Left Sidebar */}
       <div className='w-[22%] fixed left-8 3xl:left-[10%]'>
